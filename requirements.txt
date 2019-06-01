@@ -1,0 +1,18 @@
+quart
+
+# Python Dependencies
+
+python-slugify
+
+# Flask Dependencies
+
+flask-bcrypt
+flask-caching
+flask-user
+flask-wtf
+flask-zodb
+
+# flask-admin
+# flask-dance
+# flask-gravatar
+# flask-mail

@@ -1,0 +1,4 @@
+include *.rst
+include *.GPL
+include *.txt
+include *.yml

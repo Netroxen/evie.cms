@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>
+    {{ config['SITE_TITLE'] }}
+    {% if title %} -
+      {% block title %}{% endblock %}
+    {% endif %}
+  </title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  {% block meta %}{% endblock %}
+
+  <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+
+  {% include 'layout/stylesheets.j2.html' %}
+
+  {% block stylesheet %}{% endblock %}
+
+</head>
+
+<body class="sidebar-collapse">
+
+  {% include 'layout/header.j2.html' %}
+
+  {% include 'layout/alerts.j2.html' %}
+
+  {% block content %}{% endblock %}
+
+  {% include 'layout/footer.j2.html' %}
+
+  {% include 'layout/scripts.j2.html' %}
+
+  {% block javascript %}{% endblock %}
+
+</body>
+
+</html>

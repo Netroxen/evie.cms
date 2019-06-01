@@ -1,0 +1,88 @@
+.env
+.python-version
+ENV/
+venv/
+
+bin/
+compat/
+include/
+lib/
+share/
+
+# Byte-compiled / Optimized / DLL Files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C Extensions
+*.so
+
+# Distribution / Packaging
+.eggs/
+.installed.cfg
+.Python
+*.egg
+*.egg-info/
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+env/
+lib/
+lib64/
+parts/
+sdist/
+var/
+
+# PyInstaller
+*.manifest
+*.spec
+
+# Installer Logs
+pip-delete-this-directory.txt
+pip-log.txt
+
+# Unit-Test / Coverage Reports
+.cache
+.coverage
+.coverage.*
+.hypothesis/
+.tox/
+*,cover
+coverage.xml
+htmlcov/
+nosetests.xml
+
+# Translations
+*.mo
+*.pot
+
+# Django
+*.log
+local_settings.py
+
+# Flask
+.webassets-cache
+instance/
+
+# Scrapy
+.scrapy
+
+# Sphinx
+docs/_build/
+
+# PyBuilder
+target/
+
+# IPython Notebook
+.ipynb_checkpoints
+
+# Celery
+celerybeat-schedule
+
+# Spyder
+.spyderproject
+
+# Rope
+.ropeproject
