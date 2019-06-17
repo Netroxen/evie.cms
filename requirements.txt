@@ -2,17 +2,24 @@ quart
 
 # Python Dependencies
 
+dynaconf
+pillow
 python-slugify
+requests
 
 # Flask Dependencies
 
 flask-bcrypt
 flask-caching
-flask-user
+flask-csp
+flask-dance
+flask-featureflags
+flask-gravatar
+flask-limiter
+flask-login
+flask-mail
+flask-paginate
+flask-seasurf
 flask-wtf
+flask-yamlconfig
 flask-zodb
-
-# flask-admin
-# flask-dance
-# flask-gravatar
-# flask-mail

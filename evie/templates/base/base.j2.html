@@ -17,7 +17,7 @@
 
   <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
 
-  {% include 'layout/stylesheets.j2.html' %}
+  {% include 'base/stylesheets.j2.html' %}
 
   {% block stylesheet %}{% endblock %}
 
@@ -25,15 +25,29 @@
 
 <body class="sidebar-collapse">
 
-  {% include 'layout/header.j2.html' %}
+  {% if not purge_above_content %}
 
-  {% include 'layout/alerts.j2.html' %}
+    {% include 'base/header.j2.html' %}
 
-  {% block content %}{% endblock %}
+    {% include 'base/alerts.j2.html' %}
 
-  {% include 'layout/footer.j2.html' %}
+  {% endif %}
 
-  {% include 'layout/scripts.j2.html' %}
+
+  {% block content %}
+    <div id="content">
+      {% block core %}{% endblock %}
+    </div>
+  {% endblock %}
+
+  {% if not purge_below_content %}
+
+    {% include 'base/footer.j2.html' %}
+
+  {% endif %}
+
+
+  {% include 'base/scripts.j2.html' %}
 
   {% block javascript %}{% endblock %}
 

@@ -7,7 +7,7 @@ import yaml
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
-def parse_config(path='config.yaml', flatten=False):
+def parse_config(app, path='config.yaml', flatten=False):
     """Return config from a provided YAML file."""
     file_path = os.path.join(APP_ROOT, path)
     # Try to open the file

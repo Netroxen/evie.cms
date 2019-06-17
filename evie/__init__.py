@@ -15,7 +15,8 @@ def create_app(config=None):
     # App Instance
     app = Quart(__name__)
 
-    app.config.from_mapping(utils.parse_config())
+    # Parse Config (config.yaml)
+    app.config.from_mapping(utils.parse_config(app))
 
     # Initialize Extensions
     models.init_app(app)

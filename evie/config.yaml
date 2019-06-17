@@ -1,15 +1,16 @@
 # Environment Configuration
-DEBUG:                 True
-ENV:                   development
+DEBUG: True
+ENV: development
 TEMPLATES_AUTO_RELOAD: True
+TESTING: True
 
 # Application Configuration
-SECRET_KEY:            xte!XpVzif$6JnjJPvS2k7G$GcZ&$FzH
-ZODB_STORAGE:          file://var/filestorage/app.fs
+SECRET_KEY: xte!XpVzif$6JnjJPvS2k7G$GcZ&$FzH
+ZODB_STORAGE: file://var/filestorage/app.fs
 
 # Administrator Configuration
-ADMIN_PASSWORD:        Rj7Z2Q2sTxvFxZxD
-ADMIN_USERNAME:        admin
+ADMIN_PASSWORD: Rj7Z2Q2sTxvFxZxD
+ADMIN_USERNAME: admin
 
 # Site Configuration
-SITE_TITLE:            Evie
+SITE_TITLE: Evie
