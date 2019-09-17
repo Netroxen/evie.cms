@@ -1,0 +1,62 @@
+<nav class="navbar navbar-top navbar-horizontal navbar-expand-md navbar-dark bg-primary">
+  <div class="container px-4">
+
+    <a class="navbar-brand" href="{{ url_for('base.index') }}">
+      <img src="{{ url_for('static', filename='img/brand/evie_logo_w.svg') }}" alt="Evie CMS">
+    </a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbar-collapse-main">
+
+      <!-- Navbar Collapse Header -->
+      <div class="navbar-collapse-header d-md-none">
+        <div class="row">
+          <div class="col-6 collapse-brand">
+            Welcome to Evie
+          </div>
+          <div class="col-6 collapse-close">
+            <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navbar-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle sidenav">
+              <span></span>
+              <span></span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navbar Items -->
+      <ul class="navbar-nav ml-auto">
+
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" target="_blank" href="https://github.com/Netroxen/evie.cms">
+            <i class="jam jam-github-circle"></i>
+            <span class="nav-link-inner--text">GitHub</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" target="_blank" href="https://github.com/Netroxen/evie.cms/blob/master/LICENSE.rst">
+            <i class="jam jam-key"></i>
+            <span class="nav-link-inner--text">MIT License</span>
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link nav-link-icon" target="_blank" href="https://github.com/Netroxen/evie.cms/issues">
+            <i class="jam jam-help"></i>
+            <span class="nav-link-inner--text">Support</span>
+          </a>
+        </li>
+
+      </ul>
+
+      <a href="{{ url_for('auth.login') }}" class="btn btn-neutral btn-icon ml-sm-3 d-none d-md-block">
+        <span class="nav-link-inner--text">Get Started</span>
+      </a>
+
+    </div>
+
+  </div>
+</nav>

@@ -11,11 +11,10 @@
 @screen-lg-min: 1200px;
 
 /* Imports */
-@import './core.less';
 @import './errors.less';
 
 /* Colors */
-@grey: #666;
+@grey: #666666;
 @smoke: #F2F2F2;
 
 /* Vendor */
@@ -25,4 +24,31 @@
   -o-@{property}: @value;
   -webkit-@{property}: @value;
   @{property}: @value;
+}
+
+// Main Content
+
+#main-content {
+  min-height: 100vh;
+  position: relative;
+
+  // Fixes
+
+  .navbar-brand {
+    height: 60px;
+    width: 130px;
+
+    img {
+      height: inherit;
+      width: auto;
+    }
+  }
+}
+
+// Footer
+
+#footer {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
 }

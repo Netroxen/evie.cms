@@ -26,7 +26,7 @@ class ContentType(Object):
         return self._title
 
     @title.setter
-    async def title(self, value):
+    async def set_title(self, value):
         self._title = value
 
     @property
@@ -34,7 +34,7 @@ class ContentType(Object):
         return self._desc
 
     @desc.setter
-    async def desc(self, value):
+    async def set_desc(self, value):
         self._desc = value
 
 

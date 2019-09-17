@@ -8,6 +8,7 @@ compat/
 include/
 lib/
 share/
+argon/
 
 # Byte-compiled / Optimized / DLL Files
 __pycache__/

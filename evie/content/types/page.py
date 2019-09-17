@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from evie.content.types import Item
-from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired
+from . import BaseForm
 
 
-class IPage(FlaskForm):
+class IPage(BaseForm):
 
-    title = StringField('Title', validators=[DataRequired()])
+    pass
 
 
 class Page(Item):

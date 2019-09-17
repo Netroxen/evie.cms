@@ -1,0 +1,7 @@
+[site]
+SITE_TITLE = 'Evie'
+
+
+[admin]
+ADMIN_PASSWORD = 'admin'
+ADMIN_USERNAME = 'admin'

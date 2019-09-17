@@ -2,24 +2,25 @@ quart
 
 # Python Dependencies
 
+# pillow
+# requests
 dynaconf
-pillow
 python-slugify
-requests
+yaml-config
 
 # Flask Dependencies
 
+# flask-csp
+# flask-dance
+# flask-featureflags
+# flask-gravatar
+# flask-limiter
+# flask-mail
+# flask-paginate
+# flask-script
+# flask-seasurf
 flask-bcrypt
 flask-caching
-flask-csp
-flask-dance
-flask-featureflags
-flask-gravatar
-flask-limiter
 flask-login
-flask-mail
-flask-paginate
-flask-seasurf
 flask-wtf
-flask-yamlconfig
 flask-zodb

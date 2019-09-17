@@ -1,14 +1,12 @@
 # -*- coding: utf-8 -*-
 
 from evie.content.types import Container
-from flask_wtf import FlaskForm
-from wtforms import StringField
-from wtforms.validators import DataRequired
+from . import BaseForm
 
 
-class IFolder(FlaskForm):
+class IFolder(BaseForm):
 
-    title = StringField('Title', validators=[DataRequired()])
+    pass
 
 
 class Folder(Container):

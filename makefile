@@ -1,6 +1,9 @@
 QUART_APP=main:app
 export QUART_APP
 
+EVIE_ENV=development
+export EVIE_ENV
+
 clean:
 	@find ./ -name '*.pyc' -exec rm -f {} \;
 	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
@@ -17,7 +20,7 @@ isort:
 	sh -c "isort --skip-glob=.tox --recursive ./evie/"
 
 lint:
-	flake8 --exclude=.tox
+	./bin/flake8 ./evie/ --exclude=.tox
 
 install:
 	$(info "Running Evie Setup...")
@@ -25,8 +28,9 @@ install:
 	./bin/pip install -r requirements.txt
 
 run:
+	$(info "Starting Evie...")
 	./bin/quart run
 
 compile:
-	$(info "Running Evie LESS Compile...")
+	$(info "Running Compiling LESS Resources...")
 	lessc --compress ./evie/static/less/custom.less ./evie/static/css/custom.min.css

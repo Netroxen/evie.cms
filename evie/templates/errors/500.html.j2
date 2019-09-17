@@ -1,0 +1,31 @@
+{% extends 'base/base.html.j2' %}
+
+{% block title %}500{% endblock %}
+
+{% set purge_above_content = True %}
+
+{% block main %}
+
+<div class="container h-100vh">
+	<div class="d-flex h-100 justify-content-center align-items-center">
+
+		<div id="error-page" class="text-center">
+
+			<h1 class="error-page-title text-primary">
+				500
+			</h1>
+
+			<div class="error-page-text">Oops, something went wrong on our end, we apologize for the inconvenience.</div>
+
+			<div class="error-page-cta">
+				<a class="btn btn-lg btn-primary" href="{{ url_for('base.index') }}">Back to Home Page</a>
+			</div>
+
+		</div>
+
+	</div>
+</div>
+
+{% endblock %}
+
+{% set purge_below_content = True %}
