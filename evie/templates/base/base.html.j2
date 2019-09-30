@@ -4,7 +4,7 @@
 <head>
 
   <title>
-    {{ config['SITE_TITLE'] }}
+    {{ config.SITE_TITLE }}
     {% if self.title() %} -
       {% block title %}{% endblock %}
     {% endif %}
@@ -31,13 +31,15 @@
       {% include 'base/navbar.html.j2' %}
     {% endif %}
 
-    {% include 'base/alerts.html.j2' %}
-
     {% block header %}{% endblock %}
 
     {% block main %}
-      <div class="container">
+      <div class="container my-5">
+
+        {% include 'base/alerts.html.j2' %}
+
         {% block content %}{% endblock %}
+
       </div>
     {% endblock %}
 

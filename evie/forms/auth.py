@@ -1,13 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from flask_wtf import FlaskForm
-from wtforms import (
-    BooleanField,
-    PasswordField,
-    SelectField,
-    StringField,
-    SubmitField
-)
+from wtforms import BooleanField, PasswordField, StringField, SubmitField
 from wtforms.validators import DataRequired, Email, EqualTo, Length
 
 
@@ -38,14 +32,14 @@ class RegistrationForm(FlaskForm):
     )
 
     confirm_password = PasswordField(
-        'Confirm Password',
+        'Confirm password',
         validators=[
             DataRequired(),
             EqualTo('password'),
         ],
     )
 
-    submit = SubmitField('Sign Up')
+    submit = SubmitField('Sign up')
 
 
 class LoginForm(FlaskForm):
@@ -65,6 +59,6 @@ class LoginForm(FlaskForm):
         ],
     )
 
-    remember = BooleanField('Remember Me')
+    remember = BooleanField('Remember me')
 
     submit = SubmitField('Log in')

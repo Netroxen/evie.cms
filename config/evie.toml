@@ -1,7 +1,19 @@
-[site]
-SITE_TITLE = 'Evie'
+[evie]
+SITE_TITLE = "Evie"
+SITE_SUBTITLE = "A blazingly fast Asynchronous CMS delivering content one blob at a time."
 
+# Secrets
+SECRET_KEY = "xte!XpVzif$6JnjJPvS2k7G$GcZ&$FzH"
 
-[admin]
-ADMIN_PASSWORD = 'admin'
-ADMIN_USERNAME = 'admin'
+# Administrator Configuration
+ADMIN_USERNAME = "admin"
+ADMIN_PASSWORD = "admin"
+ADMIN_TITLE = "Site Administrator"
+
+# ZODB Configuration
+DB_DIR = "var"
+ZODB_STORAGE = "filestorage"
+ZODB_BLOBS = "blobstorage"
+
+# Multilingual
+LANGUAGES = ["en", "de"]

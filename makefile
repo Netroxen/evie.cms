@@ -5,15 +5,20 @@ EVIE_ENV=development
 export EVIE_ENV
 
 clean:
+	# Find Files
 	@find ./ -name '*.pyc' -exec rm -f {} \;
+	@find ./ -name '*.map' -exec rm -f {} \;
 	@find ./ -name 'Thumbs.db' -exec rm -f {} \;
 	@find ./ -name '*~' -exec rm -f {} \;
+	# Remove Dirs
 	@rm -rf dist/
 	@rm -rf build/
-	@rm -rf README.rst
 	@rm -rf .eggs/
 	@rm -rf *.egg
 	@rm -rf *.egg-info
+	# Remove DB
+	@find ./var/filestorage/ -name 'Data.fs*' -exec rm -f {} \;
+
 
 isort:
 	$(info "Sorting Python Imports...")
@@ -24,7 +29,7 @@ lint:
 
 install:
 	$(info "Running Evie Setup...")
-	virtualenv .
+	virtualenv -p python3 .
 	./bin/pip install -r requirements.txt
 
 run:

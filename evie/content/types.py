@@ -1,40 +1,49 @@
 # -*- coding: utf-8 -*-
 
+from slugify import slugify
+
 from flask_zodb import List, Object
 
 
 class ContentType(Object):
 
+    _id = ''
     _title = ''
     _desc = ''
 
-    async def __repr__(self):
+    def __repr__(self):
         """
+        Input:
+            ContentType(title='Item Title')
         Output:
-            ContentType('Title')
+            ContentType('item-title')
         """
-        return self.__class__.__name__ + '(\'{0}\')'.format(self._title)
+        return self.__class__.__name__ + '(\'{0}\')'.format(self._id)
 
-    async def __init__(self, *args, **kwargs):
-        if 'title' in kwargs:
-            self._title = kwargs.pop('title')
+    def __init__(self, title, *args, **kwargs):
+        # Defaults
+        title = kwargs.pop('title')
+        # Mandatory
+        self._id = slugify(title)
+        self._title = title
+        # Optional
         if 'desc' in kwargs:
             self._desc = kwargs.pop('desc')
 
     @property
-    async def title(self):
+    def title(self):
         return self._title
 
     @title.setter
-    async def set_title(self, value):
+    def title(self, value):
         self._title = value
 
     @property
-    async def desc(self):
+    def desc(self):
         return self._desc
 
     @desc.setter
-    async def set_desc(self, value):
+    def desc(self, value):
         self._desc = value
 
 
@@ -42,23 +51,15 @@ class Container(ContentType):
 
     _contents = List()
 
-    async def __init__(self):
+    def __init__(self):
         super(Container, self).__init__
-        if 'contents' in self.kwargs:
-            self.update_contents(self.kwargs.pop('contents'))
 
     @property
-    async def list_contents(self):
+    def list_contents(self):
         return self._contents
-
-    async def update_contents(self, contents):
-        if contents:
-            for item in contents:
-                self._contents.append(item)
-        return contents
 
 
 class Item(ContentType):
 
-    async def __init__(self):
+    def __init__(self):
         super(Item, self).__init__

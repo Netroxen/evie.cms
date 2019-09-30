@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from flask_login import UserMixin
-from flask_zodb import List, Object
 
-from . import bcrypt
+from evie.auth import bcrypt
+from flask_zodb import Object
 
 
 class User(Object, UserMixin):
 
-    name = ''
-    roles = List()
+    _name = ''
+    _id = ''
 
-    async def __repr__(self):
+    def __repr__(self):
         """
         Output:
             User('username', 'username@example.com')
@@ -21,20 +21,30 @@ class User(Object, UserMixin):
             self.email,
         )
 
-    async def __init__(self, email, password, username, name=None, roles=None):
-        self.email = email.lower()
+    def __init__(self, email, password, username, *args, **kwargs):
+        self._id = username
+        # Mandatory
+        self.email = email
         self.set_password(password)
         self.username = username
-        self.name = name
-        self.set_roles(roles)
+        # Optional
+        if 'name' in kwargs:
+            self._name = kwargs.pop('name')
 
-    async def set_password(self, password):
+    def set_password(self, password):
         self.pass_hash = bcrypt.generate_password_hash(password)
 
-    async def check_password(self, password):
-        return await bcrypt.check_password_hash(self.pass_hash, password)
+    def check_password(self, password):
+        return bcrypt.check_password_hash(self.pass_hash, password)
 
-    async def set_roles(self, roles):
-        for role in roles:
-            self.roles.append(role)
-        self.roles = set(self.roles)
+    @property
+    def id(self):
+        return self._id
+
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, value):
+        self._name = value

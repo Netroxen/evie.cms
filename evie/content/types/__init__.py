@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 
-from evie.content.types import Container
 from flask_wtf import FlaskForm
 from wtforms import StringField
 from wtforms.validators import DataRequired
+
+from evie.content.types import Container
 
 
 class BaseForm(FlaskForm):

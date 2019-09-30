@@ -1,10 +1,8 @@
 {% extends 'base/base.html.j2' %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
-
-{% if current_user.is_anonymous %}
 
 <form action="{{ request.path }}" method="POST" enctype="multipart/form-data">
 
@@ -13,7 +11,7 @@
 
       <div class="card bg-secondary shadow border-0">
         <div class="card-header bg-transparent pb-5">
-          <div class="text-muted text-center mt-2 mb-3"><small>Sign in with</small></div>
+          <div class="text-muted text-center mt-2 mb-3"><small>Register with</small></div>
           <div class="btn-wrapper text-center">
             <a href="#" class="btn btn-neutral btn-icon disabled">
               <span class="btn-inner--icon"><img src="{{ url_for('static', filename='img/icons/github.svg') }}"></span>
@@ -27,7 +25,7 @@
         </div>
         <div class="card-body px-lg-5 py-lg-5">
           <div class="text-center text-muted mb-4">
-            <small>Or sign in with credentials</small>
+            <small>Or register with credentials</small>
           </div>
           <div class="form-group mb-3">
             <div class="input-group input-group-alternative">
@@ -35,6 +33,14 @@
                 <span class="input-group-text"><i class="jam jam-user"></i></span>
               </div>
               {{ form.username(class_='form-control', placeholder=form.username.label.text) }}
+            </div>
+          </div>
+          <div class="form-group mb-3">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="jam jam-envelope"></i></span>
+              </div>
+              {{ form.email(class_='form-control', placeholder=form.email.label.text) }}
             </div>
           </div>
           <div class="form-group">
@@ -45,11 +51,13 @@
               {{ form.password(class_='form-control', placeholder=form.password.label.text) }}
             </div>
           </div>
-          <div class="custom-control custom-control-alternative custom-checkbox">
-            {{ form.remember(id='customCheckLogin', class_='custom-control-input') }}
-            <label class="custom-control-label" for="customCheckLogin">
-              <span class="text-muted">{{ form.remember.label.text }}</span>
-            </label>
+          <div class="form-group">
+            <div class="input-group input-group-alternative">
+              <div class="input-group-prepend">
+                <span class="input-group-text"><i class="jam jam-key-f"></i></span>
+              </div>
+              {{ form.confirm_password(class_='form-control', placeholder=form.confirm_password.label.text) }}
+            </div>
           </div>
           <div class="text-center">
             {{ form.submit(class_='btn btn-primary my-4') }}
@@ -60,7 +68,7 @@
       <div class="row mt-3">
 
         <div class="col-12 text-center">
-          <a href="{{ url_for('auth.register') }}" class="text-light"><small>Create new account</small></a>
+          <a href="{{ url_for('auth.login') }}" class="text-light"><small>Use existing account</small></a>
         </div>
 
       </div>
@@ -71,32 +79,5 @@
   {{ form.hidden_tag() }}
 
 </form>
-
-{% else %}
-
-<div class="row justify-content-center py-6">
-  <div class="col-lg-5 col-md-7">
-
-    <div class="card bg-secondary shadow border-0">
-      <div class="card-body px-lg-5 py-lg-5">
-
-        <div class="text-center">
-
-          <div class="display-4">
-            <span>Logged in as</span>
-            <span>{{ (current_user.name or current_user.id) }}</span>
-          </div>
-
-          <a href="{{ url_for('auth.logout') }}" class="btn btn-primary my-4">Log out</a>
-
-        </div>
-
-      </div>
-    </div>
-
-  </div>
-</div>
-
-{% endif %}
 
 {% endblock %}

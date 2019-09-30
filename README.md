@@ -20,7 +20,7 @@ A blazingly fast Asynchronous CMS delivering content one blob at a time.
 
 - Preview - [TBD]()
 - Documentation - [TBD]()
-- Changelog - [CHANGELOG.md](https://github.com/Netroxen/evie.cms/CHANGELOG.md)
+- Changelog - [CHANGELOG.md](https://github.com/Netroxen/evie.cms/blob/master/CHANGELOG.md)
 
 
 ## Features

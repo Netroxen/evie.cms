@@ -3,10 +3,9 @@ quart
 # Python Dependencies
 
 # pillow
-# requests
 dynaconf
 python-slugify
-yaml-config
+python-usernames
 
 # Flask Dependencies
 

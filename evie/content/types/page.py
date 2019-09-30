@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from evie.content.types import Item
+
 from . import BaseForm
 
 

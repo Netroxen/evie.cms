@@ -1,14 +1,16 @@
 # -*- coding: utf-8 -*-
 
 import os
-import quart.flask_patch
 
+import quart.flask_patch
 from dynaconf import FlaskDynaconf
-from dynaconf.loaders import toml_loader
 from flask_caching import Cache
-from quart import Quart
+
+from evie.app import EvieApp
+from evie.db import EvieDB
 
 cache = Cache(config={'CACHE_TYPE': 'simple'})
+database = EvieDB()
 
 ENVVAR_PREFIX = 'EVIE'
 SETTINGS_FILES = ['env.toml', 'evie.toml']
@@ -16,10 +18,10 @@ SETTINGS_FILES = ['env.toml', 'evie.toml']
 
 def create_app(config=None):
     """Initializes the Evie application."""
-    from . import auth, content, routes
+    from evie import auth, routes
 
     # App Instance
-    app = Quart(__name__)
+    app = EvieApp(__name__)
 
     FlaskDynaconf(
         app,
@@ -28,17 +30,15 @@ def create_app(config=None):
         SILENT_ERRORS_FOR_DYNACONF=False,
     )
 
-    # Initialize Extensions
+    # Initialize Database
+    database.init_app(app)
+
+    # Initialize Modules
     auth.init_app(app)
-    content.init_app(app)
     routes.init_app(app)
 
     # Initialize Caching
     cache.init_app(app)
-
-    # Check Environment Variables
-    if f'{ENVVAR_PREFIX}_CONF' in os.environ:
-        app.config.from_envvar(f'{ENVVAR_PREFIX}_CONF')
 
     # Check Config Variable
     if config is not None:
@@ -48,5 +48,9 @@ def create_app(config=None):
         # Is a Python-File
         elif config.endswith('.py'):
             app.config.from_pyfile(config)
+
+    # Check Environment Variables
+    if f'{ENVVAR_PREFIX}_CONF' in os.environ:
+        app.config.from_envvar(f'{ENVVAR_PREFIX}_CONF')
 
     return app
