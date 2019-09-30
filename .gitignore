@@ -9,6 +9,7 @@ include/
 lib/
 share/
 argon/
+.vscode/
 
 # Byte-compiled / Optimized / DLL Files
 __pycache__/
