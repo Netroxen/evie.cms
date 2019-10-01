@@ -14,7 +14,8 @@ login_manager.login_view = 'auth.login'
 
 @login_manager.user_loader
 def load_user(user_id):
-    return current_app.get_user(user_id)
+    user = current_app.get_user(user_id)
+    return user
 
 
 def init_app(app):

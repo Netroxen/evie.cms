@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from evie.content.schema import BaseForm
 from evie.content.types import Item
-
-from . import BaseForm
 
 
 class IPage(BaseForm):

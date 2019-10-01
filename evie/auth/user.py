@@ -50,19 +50,8 @@ class User(Object, UserMixin):
         return False
 
 
-class ManagerUser(User):
-    """
-    The manager user is granted all privileges.
-
-    NOTE: Use with caution!
-    """
-
-    def __init__(self, *args, **kwargs):
-        # Defaults
-        username = kwargs.pop('username', 'manager')
-        # Mandatory
-        self._id = username
-        self.username = username
+class Manager(User):
+    """The manager is granted all privileges."""
 
     def is_manager(self):
         return True

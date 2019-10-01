@@ -56,3 +56,11 @@ make run
 
 - Submit [GitHub issues](http://github.com/zuiidea/antd-admin/issues) to report bugs or ask questions.
 - Make a [Pull Request](http://github.com/zuiidea/antd-admin/pulls) to improve our code.
+
+
+## Mentions
+
+This project implements some awesome Open Source resources.
+
+- [JAM Icons](https://github.com/michaelampr/jam)
+- [Argon Dashboard](https://github.com/creativetimofficial/argon-dashboard)

@@ -1,6 +1,6 @@
 [evie]
 SITE_TITLE = "Evie"
-SITE_SUBTITLE = "A blazingly fast Asynchronous CMS delivering content one blob at a time."
+SITE_DESC = "A blazingly fast Asynchronous CMS delivering content one blob at a time."
 
 # Secrets
 SECRET_KEY = "xte!XpVzif$6JnjJPvS2k7G$GcZ&$FzH"
@@ -8,7 +8,8 @@ SECRET_KEY = "xte!XpVzif$6JnjJPvS2k7G$GcZ&$FzH"
 # Administrator Configuration
 ADMIN_USERNAME = "admin"
 ADMIN_PASSWORD = "admin"
-ADMIN_TITLE = "Site Administrator"
+ADMIN_NAME = "Site Administrator"
+ADMIN_EMAIL = ""
 
 # ZODB Configuration
 DB_DIR = "var"

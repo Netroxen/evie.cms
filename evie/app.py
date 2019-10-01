@@ -7,16 +7,6 @@ from evie.auth.user import User
 
 class EvieApp(Quart):
 
-    # Flags
-
-    @property
-    def db_is_init(self):
-        return self.zodb.get('db_is_init', False)
-
-    @property
-    def app_is_init(self):
-        return self.zodb.get('app_is_init', False)
-
     # Database Properties
 
     @property
@@ -38,17 +28,19 @@ class EvieApp(Quart):
     @property
     def content(self):
         """Returns the EvieDB class instance."""
-        db = self.extensions.get('db', None)
-        if db is not None:
-            return db
-        raise RuntimeError('Nothing Set!')
+        return self.extensions.get('db', None)
 
     # Helper Methods
+
+    def get_site(self) -> None:
+        """Return the site root."""
+        id = self.zodb['config'].get('SITE_ID', None)
+        return self.zodb['catalog'].get(id, None)
 
     def get_user(self, username: str) -> User:
         """Return an account item."""
         return self.zodb['accounts'].get(username, None)
 
-    def create_user(self, *args, **kwargs) -> None:
+    async def create_user(self, *args, **kwargs) -> None:
         """Create a new account item."""
-        self.content.insert_into('accounts', User(*args, **kwargs))
+        await self.content.insert_into('accounts', User(*args, **kwargs))

@@ -17,7 +17,9 @@ async def login():
         if user and user.check_password(form.password.data):
             login_user(user)
             await flash('Logged in successfully.', 'default')
-            return redirect(url_for(request.args.get('next', 'base.index')))
+            return redirect(url_for(
+                request.args.get('next', 'base.index')
+            ))
         await flash('Username or password incorrect.', 'danger')
     return await render_template('auth/login.html.j2', form=form)
 
@@ -35,14 +37,18 @@ async def register():
     form = RegistrationForm()
     if form.validate_on_submit():
         try:
-            current_app.create_user(
+            await current_app.create_user(
                 form.email.data,
                 form.password.data,
                 form.username.data,
             )
             await flash('Account successfully registered.', 'success')
-            return redirect(url_for(request.args.get('next', 'auth.login')))
+            return redirect(url_for(
+                request.args.get('next', 'auth.login')
+            ))
         except KeyError:
             await flash('The account could not be registered.', 'danger')
-            return redirect(url_for(request.args.get('next', 'auth.register')))
+            return redirect(url_for(
+                request.args.get('next', 'auth.register')
+            ))
     return await render_template('auth/register.html.j2', form=form)
