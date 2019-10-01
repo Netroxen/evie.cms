@@ -4,14 +4,15 @@ from pathlib import Path
 
 import toml
 import transaction
-from quart import copy_current_request_context, current_app
+from quart import current_app
 
 from flask_zodb import ZODB, BTree, Dict
+
+zodb = ZODB()
 
 
 class EvieDB(object):
 
-    zodb = ZODB()
     zodb_file = 'Data.fs'
 
     def __init__(self, app=None):
@@ -21,54 +22,47 @@ class EvieDB(object):
     def init_app(self, app):
         """Initialize a new ZODB database."""
 
-        self.conf_db_defaults(app)
-        self.zodb.init_app(app)
-        self.init_db_defaults(app)
+        self.app = app
 
-    def conf_db_defaults(self, app) -> None:
+        self._conf_db_defaults()
+        zodb.init_app(app)
+        self._init_db_defaults()
+
+    def _conf_db_defaults(self) -> None:
         """Update common app config variables."""
 
         # Set Defaults
-        db_dir = app.config['DB_DIR']
-        zodb_storage = app.config['ZODB_STORAGE']
-        zodb_blobs = app.config['ZODB_BLOBS']
+        db_dir = self.app.config['DB_DIR']
+        zodb_storage = self.app.config['ZODB_STORAGE']
+        zodb_blobs = self.app.config['ZODB_BLOBS']
 
         # Concatenate Paths
         self.storage = Path(db_dir, zodb_storage, self.zodb_file)
         self.blobs = Path(db_dir, zodb_blobs)
 
         # Update Configuration
-        app.config['ZODB_STORAGE'] = self.storage.resolve().as_uri()
-        app.config['ZODB_BLOBS'] = self.blobs.resolve().as_uri()
+        self.app.config['ZODB_STORAGE'] = self.storage.resolve().as_uri()
+        self.app.config['ZODB_BLOBS'] = self.blobs.resolve().as_uri()
 
-        if 'db' not in app.extensions:
-            app.extensions['db'] = self
+        if 'db' not in self.app.extensions:
+            self.app.extensions['db'] = self
 
-    def init_db_defaults(self, app) -> None:
+    def _init_db_defaults(self) -> None:
         """Create common database defaults."""
 
-        zodb = app.extensions['zodb']
-        data = zodb.db
-
         # Open DB Connection
-        cx = data.open()
+        cx = self.app.db.open()
 
         if not hasattr(cx.root, 'db_is_init'):
-
             zodb_contents = {'accounts': BTree(), 'catalog': BTree()}
-
             config_file = Path('config', 'evie.toml')
             config = toml.loads(config_file.read_text())
-
             # Copy Config
             cx.root.config = Dict(config['evie'])
-
             for cat in zodb_contents:
                 setattr(cx.root, cat, zodb_contents[cat])
-
             # Set DB As Initialized
             cx.root.db_is_init = True
-
             # Commit Changes
             transaction.commit()
 
@@ -78,7 +72,5 @@ class EvieDB(object):
     def insert_into(self, container: str, item: object):
         cat = current_app.zodb[container]
         if cat.has_key(item.id):
-            raise KeyError(
-                'Item with ID \'{0}\' already exists!'.format(item.id)
-            )
+            raise KeyError('Item with ID \'%s\' already exists!' % (item.id))
         cat[item.id] = item
