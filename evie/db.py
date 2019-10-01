@@ -21,11 +21,11 @@ class EvieDB(object):
     def init_app(self, app):
         """Initialize a new ZODB database."""
 
-        self._update_common(app)
+        self.conf_db_defaults(app)
         self.zodb.init_app(app)
-        self._create_common(app)
+        self.init_db_defaults(app)
 
-    def _update_common(self, app):
+    def conf_db_defaults(self, app) -> None:
         """Update common app config variables."""
 
         # Set Defaults
@@ -44,7 +44,7 @@ class EvieDB(object):
         if 'db' not in app.extensions:
             app.extensions['db'] = self
 
-    def _create_common(self, app):
+    def init_db_defaults(self, app) -> None:
         """Create common database defaults."""
 
         zodb = app.extensions['zodb']
@@ -75,7 +75,7 @@ class EvieDB(object):
         # Close DB Connection
         cx.close()
 
-    def insert_into(self, container, item):
+    def insert_into(self, container: str, item: object):
         cat = current_app.zodb[container]
         if cat.has_key(item.id):
             raise KeyError(

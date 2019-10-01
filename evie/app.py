@@ -7,6 +7,8 @@ from evie.auth.user import User
 
 class EvieApp(Quart):
 
+    # Flags
+
     @property
     def db_is_init(self):
         return self.zodb.get('db_is_init', False)
@@ -43,10 +45,10 @@ class EvieApp(Quart):
 
     # Helper Methods
 
-    def get_user(self, username):
+    def get_user(self, username: str) -> User:
         """Return an account item."""
         return self.zodb['accounts'].get(username, None)
 
-    def create_user(self, *args, **kwargs):
+    def create_user(self, *args, **kwargs) -> None:
         """Create a new account item."""
         self.content.insert_into('accounts', User(*args, **kwargs))
