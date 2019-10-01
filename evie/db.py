@@ -4,7 +4,7 @@ from pathlib import Path
 
 import toml
 import transaction
-from quart import current_app
+from quart import copy_current_request_context, current_app
 
 from flask_zodb import ZODB, BTree, Dict
 

@@ -14,12 +14,9 @@ class User(Object, UserMixin):
     def __repr__(self):
         """
         Output:
-            User('username', 'username@example.com')
+            User('username')
         """
-        return self.__class__.__name__ + '(\'{0}\', \'{1}\')'.format(
-            self.username,
-            self.email,
-        )
+        return self.__class__.__name__ + '(\'{0}\')'.format(self.username)
 
     def __init__(self, email, password, username, *args, **kwargs):
         self._id = username
@@ -48,3 +45,24 @@ class User(Object, UserMixin):
     @name.setter
     def name(self, value):
         self._name = value
+
+    def is_manager(self):
+        return False
+
+
+class ManagerUser(User):
+    """
+    The manager user is granted all privileges.
+
+    NOTE: Use with caution!
+    """
+
+    def __init__(self, *args, **kwargs):
+        # Defaults
+        username = kwargs.pop('username', 'manager')
+        # Mandatory
+        self._id = username
+        self.username = username
+
+    def is_manager(self):
+        return True

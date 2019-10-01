@@ -7,6 +7,14 @@ from evie.auth.user import User
 
 class EvieApp(Quart):
 
+    @property
+    def db_is_init(self):
+        return self.zodb.get('db_is_init', False)
+
+    @property
+    def app_is_init(self):
+        return self.zodb.get('app_is_init', False)
+
     # Database Properties
 
     @property

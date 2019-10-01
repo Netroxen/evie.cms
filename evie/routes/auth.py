@@ -14,10 +14,11 @@ async def login():
     form = LoginForm()
     if form.validate_on_submit():
         user = current_app.get_user(form.username.data)
-        if user.check_password(form.password.data):
+        if user and user.check_password(form.password.data):
             login_user(user)
-            await flash('Logged in successfully.', 'primary')
+            await flash('Logged in successfully.', 'default')
             return redirect(url_for(request.args.get('next', 'base.index')))
+        await flash('Username or password incorrect.', 'danger')
     return await render_template('auth/login.html.j2', form=form)
 
 
@@ -25,6 +26,7 @@ async def login():
 @login_required
 async def logout():
     logout_user()
+    await flash('You are now logged out.', 'default')
     return redirect(url_for(request.args.get('next', 'auth.login')))
 
 
