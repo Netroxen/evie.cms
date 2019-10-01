@@ -1,4 +1,4 @@
 Contributors
 ============
 
-- Jesse Stippel, jesse.stippel@operun.de
+- Jesse Stippel, jesse.stippel@gmail.com
