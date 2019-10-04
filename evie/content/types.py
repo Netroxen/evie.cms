@@ -61,11 +61,6 @@ class Container(ContentTypeBase):
         return self._contents
 
 
-class Site(Container):
-
-    pass
-
-
 class Item(ContentTypeBase):
 
     @property

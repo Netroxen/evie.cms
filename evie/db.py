@@ -7,7 +7,7 @@ import transaction
 from quart import current_app
 
 from evie.auth.user import Manager
-from evie.content.types import Site
+from evie.content.schema.site import Site
 from flask_zodb import ZODB, BTree, Dict
 
 

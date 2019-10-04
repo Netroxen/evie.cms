@@ -18,3 +18,13 @@ schema = 'evie.content.schema.page.IPage'
 klass = 'evie.content.schema.page.Page'
 
 access_perm = ''
+
+[site]
+title = 'Site'
+desc = 'A site object.'
+
+template = 'types/site.html.j2'
+schema = 'evie.content.schema.site.ISite'
+klass = 'evie.content.schema.site.Site'
+
+access_perm = ''

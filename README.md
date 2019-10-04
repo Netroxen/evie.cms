@@ -58,13 +58,6 @@ make run
 - Make a [Pull Request](http://github.com/zuiidea/antd-admin/pulls) to improve our code.
 
 
-## Warning
-
-Evie is being developed with simplicity in mind, that means keeping functionality as close to what the implemented frameworks offer.
-
-Because of this, Evie requires some knowledge of Flask, Quart or Python Web-Frameworks in general to be fully utilised.
-
-
 ## Mentions
 
 This project implements some awesome Open Source resources.
