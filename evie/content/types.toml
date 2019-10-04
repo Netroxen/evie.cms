@@ -1,14 +1,20 @@
 [folder]
 title = 'Folder'
-desc = 'A container object.'
-template = 'types/folder.html.j2'
-schema = '.types.folder.IFolder'
-object_class = '.types.folder.Folder'
+desc = 'A simple folder object with a title and description field.'
 
+template = 'types/folder.html.j2'
+schema = 'evie.content.schema.folder.IFolder'
+klass = 'evie.content.schema.folder.Folder'
+
+access_perm = ''
+allowed_types = ['page']
 
 [page]
 title = 'Page'
 desc = 'A simple page object with a title, description and text field.'
+
 template = 'types/page.html.j2'
-schema = '.types.page.IPage'
-object_class = '.types.page.Page'
+schema = 'evie.content.schema.page.IPage'
+klass = 'evie.content.schema.page.Page'
+
+access_perm = ''

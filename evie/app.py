@@ -3,6 +3,7 @@
 from quart import Quart
 
 from evie.auth.user import User
+from evie.content.core import ContentTypes
 
 
 class EvieApp(Quart):
@@ -29,6 +30,11 @@ class EvieApp(Quart):
     def content(self):
         """Returns the EvieDB class instance."""
         return self.extensions.get('db', None)
+
+    @property
+    def types(self):
+        """Returns the ContentTypes class instance."""
+        return self.extensions.get('types', None)
 
     # Helper Methods
 

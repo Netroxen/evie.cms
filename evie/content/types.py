@@ -5,7 +5,7 @@ from slugify import slugify
 from flask_zodb import List, Object
 
 
-class ContentType(Object):
+class ContentTypeBase(Object):
 
     _id = ''
     _title = ''
@@ -14,9 +14,9 @@ class ContentType(Object):
     def __repr__(self):
         """
         Input:
-            ContentType(title='Item Title')
+            __name__(title='Item Title')
         Output:
-            ContentType('item-title')
+            __name__('item-title')
         """
         return self.__class__.__name__ + '(\'{0}\')'.format(self._id)
 
@@ -48,12 +48,15 @@ class ContentType(Object):
     def desc(self, value):
         self._desc = value
 
+    @property
+    def can_add(self):
+        return True
 
-class Container(ContentType):
+
+class Container(ContentTypeBase):
 
     _contents = List()
 
-    @property
     def list_contents(self):
         return self._contents
 
@@ -63,6 +66,8 @@ class Site(Container):
     pass
 
 
-class Item(ContentType):
+class Item(ContentTypeBase):
 
-    pass
+    @property
+    def can_add(self):
+        return False

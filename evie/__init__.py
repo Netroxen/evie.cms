@@ -7,10 +7,12 @@ from dynaconf import FlaskDynaconf
 from flask_caching import Cache
 
 from evie.app import EvieApp
+from evie.content.core import ContentTypes
 from evie.db import EvieDB
 
 cache = Cache(config={'CACHE_TYPE': 'simple'})
 database = EvieDB()
+contenttypes = ContentTypes()
 
 ENVVAR_PREFIX = 'EVIE'
 SETTINGS_FILES = ['env.toml', 'evie.toml']
@@ -36,6 +38,8 @@ def create_app(config=None):
     # Initialize Modules
     auth.init_app(app)
     routes.init_app(app)
+
+    contenttypes.init_app(app)
 
     # Initialize Caching
     cache.init_app(app)
