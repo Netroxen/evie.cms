@@ -17,7 +17,7 @@ setup(
     description='A Python based CMS system.',
     long_description=open('README.rst').read(),
     author='Jesse Stippel',
-    author_email='jesse.stippel@operun.de',
+    author_email='jesse.stippel@gmail.de',
     include_package_data=True,
     install_requires=['quart'],
     license='MIT',
